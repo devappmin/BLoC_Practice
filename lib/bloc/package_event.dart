@@ -13,3 +13,14 @@ class GetPackageEvent extends PackageEvent {
   @override
   List<Object?> get props => [pages];
 }
+
+class AppendPackageEvent extends PackageEvent {
+  final int pages;
+
+  AppendPackageEvent({
+    required this.pages,
+  });
+
+  @override
+  List<Object?> get props => [pages];
+}

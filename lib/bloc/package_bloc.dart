@@ -12,6 +12,7 @@ class PackageBloc extends Bloc<PackageEvent, PackageState> {
 
   PackageBloc({required this.packageRepository}) : super(Empty()) {
     on<GetPackageEvent>(_onGetPackageEvent);
+    on<AppendPackageEvent>(_onAppendPackageEvent);
   }
 
   void _onGetPackageEvent(
@@ -29,7 +30,38 @@ class PackageBloc extends Bloc<PackageEvent, PackageState> {
 
       emit(Loaded(packages: packages));
     } catch (e) {
-      emit(Error("", message: e.toString()));
+      emit(Error(message: e.toString()));
+    }
+  }
+
+  void _onAppendPackageEvent(
+      AppendPackageEvent event, Emitter<PackageState> emit) async {
+    try {
+      if (state is Loaded) {
+        final parsedState = (state as Loaded);
+
+        print(event.pages);
+
+        final resp = await packageRepository.getPackages(event.pages);
+        final packages = resp
+            .map<Package>(
+              (e) => Package.fromJson(e),
+            )
+            .toList();
+
+        final prevPackages = [
+          ...parsedState.packages,
+        ];
+
+        final newPackages = [
+          ...prevPackages,
+          ...packages,
+        ];
+
+        emit(Loaded(packages: newPackages));
+      }
+    } catch (e) {
+      emit(Error(message: e.toString()));
     }
   }
 }

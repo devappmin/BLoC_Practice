@@ -25,7 +25,7 @@ class Loaded extends PackageState {
 class Error extends PackageState {
   final String message;
 
-  Error(String string, {required this.message});
+  Error({required this.message});
 
   @override
   List<Object?> get props => [message];

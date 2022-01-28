@@ -35,11 +35,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int pages = 1;
+
   @override
   void initState() {
     super.initState();
 
-    BlocProvider.of<PackageBloc>(context).add(GetPackageEvent(pages: 0));
+    BlocProvider.of<PackageBloc>(context).add(GetPackageEvent(pages: pages));
   }
 
   @override
@@ -75,6 +77,14 @@ class _MyHomePageState extends State<MyHomePage> {
           }
 
           return Container();
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          context.read<PackageBloc>().add(
+                AppendPackageEvent(pages: ++pages),
+              );
         },
       ),
     );
