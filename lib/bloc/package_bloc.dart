@@ -40,8 +40,6 @@ class PackageBloc extends Bloc<PackageEvent, PackageState> {
       if (state is Loaded) {
         final parsedState = (state as Loaded);
 
-        print(event.pages);
-
         final resp = await packageRepository.getPackages(event.pages);
         final packages = resp
             .map<Package>(

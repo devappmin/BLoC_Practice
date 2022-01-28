@@ -26,10 +26,12 @@ class PackageRepository {
         Element? description = pkgs.querySelector('.packages-description');
         Element? version = pkgs.querySelector('.packages-metadata-block');
         Element? nullSafety = pkgs.querySelector('.package-badge');
-        Element? likes = pkgs.querySelector('.packages-score-value-number');
-        Element? pubPoints = pkgs.querySelector('.packages-score-value-number');
-        Element? popularity =
-            pkgs.querySelector('.packages-score-value-number');
+        Element? likes = pkgs
+            .querySelector('.packages-score-like .packages-score-value-number');
+        Element? pubPoints = pkgs.querySelector(
+            '.packages-score-health .packages-score-value-number');
+        Element? popularity = pkgs.querySelector(
+            '.packages-score-popularity .packages-score-value-number');
 
         packages.add({
           'name': name?.text,

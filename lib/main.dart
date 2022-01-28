@@ -1,7 +1,11 @@
 import 'package:bloc_practice/bloc/package_bloc.dart';
+import 'package:bloc_practice/domain/constant/score_value.dart';
 import 'package:bloc_practice/repository/package_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'domain/colors/colors.dart';
+import 'model/package.dart';
 
 void main() {
   runApp(const MyApp());
@@ -65,10 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: packages.length,
               itemBuilder: (context, index) {
                 final package = packages[index];
-                return ListTile(
-                  title: Text(package.name),
-                  subtitle: Text(package.description),
-                );
+                return _ListTile(package: package);
               },
               separatorBuilder: (context, index) => const Divider(),
             );
@@ -86,6 +87,125 @@ class _MyHomePageState extends State<MyHomePage> {
                 AppendPackageEvent(pages: ++pages),
               );
         },
+      ),
+    );
+  }
+}
+
+class _ListTile extends StatelessWidget {
+  final Package package;
+
+  const _ListTile({required this.package});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            package.name,
+            style: const TextStyle(
+              fontSize: 18,
+              color: ViewColors.primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            package.description,
+            style: const TextStyle(
+              color: ViewColors.primaryTextColor,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Text(
+                    package.likes.toString(),
+                    style: const TextStyle(
+                      color: ViewColors.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Text(
+                    ScoreValue.likes,
+                    style: TextStyle(fontSize: 10),
+                  ),
+                ],
+              ),
+              const SizedBox(width: 16),
+              Column(
+                children: <Widget>[
+                  Text(
+                    package.pubPoints.toString(),
+                    style: const TextStyle(
+                      color: ViewColors.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Text(
+                    ScoreValue.pubPoints,
+                    style: TextStyle(fontSize: 10),
+                  ),
+                ],
+              ),
+              const SizedBox(width: 16),
+              Column(
+                children: <Widget>[
+                  Text(
+                    package.popularity.toString() + '%',
+                    style: const TextStyle(
+                      color: ViewColors.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Text(
+                    ScoreValue.popularity,
+                    style: TextStyle(fontSize: 10),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 16.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                package.version,
+                style: const TextStyle(
+                  color: ViewColors.primaryColor,
+                  fontSize: 10,
+                ),
+              ),
+              package.nullSafety
+                  ? Container(
+                      child: const Text(
+                        "Null safety",
+                        style: TextStyle(
+                          color: ViewColors.primaryColor,
+                          fontSize: 10,
+                        ),
+                      ),
+                      margin: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 6),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        border: Border.all(color: ViewColors.primaryColor),
+                      ),
+                    )
+                  : Container(),
+            ],
+          ),
+        ],
       ),
     );
   }
