@@ -1,5 +1,7 @@
 # pub.dev scrapping with BLoC Pattern
 
+[![Badge](https://img.shields.io/badge/GitHub%20Blog-Click-yellow)](https://petabyte.studio/posts/learn-bloc-like-eating-cake/)
+
 The purpose of this project is learning `BLoC` Architecture pattern by creating `pub.dev` scrapping application.
 
 ![Screenshot_1644225681](https://user-images.githubusercontent.com/4322099/154806248-3462848a-cd90-49c3-957b-3c85bf2919d8.png)
