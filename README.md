@@ -1,16 +1,44 @@
-# bloc_practice
+# pub.dev scrapping with BLoC Pattern
 
-A new Flutter project.
+The purpose of this project is learning `BLoC` Architecture pattern by creating `pub.dev` scrapping application.
 
-## Getting Started
+![Screenshot_1644225681](https://user-images.githubusercontent.com/4322099/154806248-3462848a-cd90-49c3-957b-3c85bf2919d8.png)
 
-This project is a starting point for a Flutter application.
+## Directory Tree
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+lib
+│   main.dart
+│
+├───bloc
+│       package_bloc.dart
+│       package_event.dart
+│       package_state.dart
+│
+├───domain
+│   ├───colors
+│   │       colors.dart
+│   │
+│   └───constant
+│           pub_dev.dart
+│           score_value.dart
+│
+├───model
+│       package.dart
+│       package.freezed.dart
+│       package.g.dart
+│
+└───repository
+        package_repository.dart
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Used Packages.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [build_runner](https://pub.dev/packages/build_runner)
+- [equatable](https://pub.dev/packages/equatable)
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- [freezed](https://pub.dev/packages/freezed)
+- [freezed_annotation](https://pub.dev/packages/freezed_annotation)
+- [http](https://pub.dev/packages/http)
+- [html](https://pub.dev/packages/html)
+- [json_serializable](https://pub.dev/packages/json_serializable)
